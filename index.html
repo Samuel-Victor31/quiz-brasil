@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title>Quiz sobre o brasil</title>
+        <meta name="description" content="Um quiz interativo para testar seus conhecimentos">
+    </head>
+    <body>
+        <header>
+            <h1>Quiz interativo sobre o Brasil</h1>
+            <p>Teste seus conhecimentos sobre o Brasil!</p>  
+            <link rel="stylesheet" href="style.css">
+        </header>
+        <main>
+            <!--Introdução-->
+            <section>
+                <h2>Sobre esse Quiz</h2>
+                <p><strong>Esse Quiz</strong> foi feito para testar seu conhecimentos sobre o <em>Brasil!</em></p>
+                <p>Desafie-se com este <abbr title="Perguntas sobre algum tema.">Quiz!</abbr></p>
+            </section>
+            <!--Pergunta 1: Multipla escolha-->
+            <section>
+                <h2>Qual é o maior estado do Brasil em extensão territorial?</h2>
+                <form>
+                    <input type="radio" value="São Paulo" id="p1a" name="pergunta1">
+                    <label for="p1a">São Paulo</label><br>
+                    <input type="radio" value="Mato Grosso" id="p2a" name="pergunta1">
+                    <label for="p2a">Mato Grosso</label><br>
+                    <input type="radio" value="Amazonas" id="p3a" name="pergunta1">
+                    <label for="p3a">Amazonas</label><br>
+                    <input type="radio" value="Minas Gerais" id="p4a" name="pergunta1">
+                    <label for="p4a">Minas Gerais</label><br>
+                </form>
+            </section>
+            <!--Pergunta 2: Multipla escolha-->
+            <section>
+                <h2>Qual é a capital do Brasil?</h2>
+                <form>
+                    <input type="radio" value="São Paulo" id="p1b" name="pergunta2">
+                    <label for="p1b">São Paulo</label><br>
+                    <input type="radio" value="Brasília" id="p2b" name="pergunta2">
+                    <label for="p2b">Brasília</label><br>
+                    <input type="radio" value="Rio de Janeiro" id="p3b" name="pergunta2">
+                    <label for="p3b">Rio de Janeiro</label><br>
+                    <input type="radio" value="Salvador" id="p4b" name="pergunta2">
+                    <label for="p4b">Salvador</label><br>
+                </form>
+            </section>
+            <!--Pergunta 3: Multipla escolha-->
+            <section>
+                <h2>Qual é o maior rio do Brasil?</h2>
+                <form>
+                    <input type="radio" value="Rio São Francisco" id="p1c" name="pergunta3">
+                    <label for="p1c">Rio São Francisco</label><br>
+                    <input type="radio" value="Rio Amazonas" id="p2c" name="pergunta3">
+                    <label for="p2c">Rio Amazonas</label><br>
+                    <input type="radio" value="Rio Paraná" id="p3c" name="pergunta3">
+                    <label for="p3c">Rio Paraná</label><br>
+                    <input type="radio" value="Rio Tocantins" id="p4c" name="pergunta3">
+                    <label for="p4c">Rio Tocantins</label><br>
+                </form>
+            </section>
+            <!--Pergunta 4: Multipla escolha-->
+            <section>
+                <h2>Qual é a maior cidade do Brasil em população?</h2>
+                <form>
+                    <input type="radio" value="São Paulo" id="p1d" name="pergunta4">
+                    <label for="p1d">São Paulo</label><br>
+                    <input type="radio" value="Rio de Janeiro" id="p2d" name="pergunta4">
+                    <label for="p2d">Rio de Janeiro</label><br>
+                    <input type="radio" value="Brasília" id="p3d" name="pergunta4">
+                    <label for="p3d">Brasília</label><br>
+                    <input type="radio" value="Salvador" id="p4d" name="pergunta4">
+                    <label for="p4d">Salvador</label><br>
+                </form>
+            </section>
+            <!--Pergunta 5: Multipla escolha-->
+            <section>
+                <h2>Qual é o maior bioma do Brasil?</h2>
+                <form>
+                    <input type="radio" value="Mata Atlântica" id="p1e" name="pergunta5">
+                    <label for="p1e">Mata Atlântica</label><br>
+                    <input type="radio" value="Caatinga" id="p2e" name="pergunta5">
+                    <label for="p2e">Caatinga</label><br>
+                    <input type="radio" value="Cerrado" id="p3e" name="pergunta5">
+                    <label for="p3e">Cerrado</label><br>
+                    <input type="radio" value="Amazônia" id="p4e" name="pergunta5">
+                    <label for="p4e">Amazônia</label><br>
+                </form>
+            </section>
+            <!--Pergunta 6: Texto-->
+            <section>
+                <h2>Qual é o nome do atual presidente do Brasil?</h2>
+                <form>
+                    <input type="text" id="p6" name="pergunta6"
+                    placeholder="Digite sua resposta..."><br>
+                </form>
+            </section>
+            <!--Pergunta 7: data-->
+            <section>
+                <h2>Qual é a data de independência do Brasil?</h2>
+                <form>
+                    <input type="date" id="p7" name="pergunta7"><br>
+                </form>
+            </section>
+            <!--Pergunta 8: Seleção -->
+            <section>
+                <h2>Qual é o maior oceano do mundo?</h2>
+                <form>
+                    <select id="p8" name="pergunta8">
+                        <option value="Atlântico">Atlântico</option>
+                        <option value="Índico">Índico</option>
+                        <option value="Pacífico">Pacífico</option>
+                        <option value="Ártico">Ártico</option>
+                    </select><br>
+                </form>
+            </section>
+            <!--Pergunta 9: Checkbox-->
+            <section>
+                <h2>Quais desses estados fazem parte da região Norte do Brasil?</h2>
+                <form>
+                    <input type="checkbox" value="Acre" id="p1f" name="pergunta9">
+                    <label for="p1f">Acre</label><br>
+                    <input type="checkbox" value="Amazonas" id="p2f" name="pergunta9">
+                    <label for="p2f">Amazonas</label><br>
+                    <input type="checkbox" value="Bahia" id="p3f" name="pergunta9">
+                    <label for="p3f">Bahia</label><br>
+                    <input type="checkbox" value="Roraima" id="p4f" name="pergunta9">
+                    <label for="p4f">Roraima</label><br>
+                </form>
+            </section>
+            <!--Pergunta 10: Menu suspenso-->
+            <section>
+                <h2>Qual é a moeda oficial do Brasil?</h2>
+                <form>
+                    <select id="p10" name="pergunta10">
+                        <option value="Dólar">Dólar</option>
+                        <option value="Euro">Euro</option>
+                        <option value="Real">Real</option>
+                        <option value="Libra">Libra</option>
+                    </select><br>
+                </form>
+            </section>
+            <!--Pergunta 11: Imagem-->
+            <section>
+                <h2>Qual é o nome do monumento mostrado na imagem abaixo?</h2>
+                <figure>
+                    <img src="assets/imagem.jpg" alt="Cristo Redentor" width="200">
+                </figure>Figura 1: Localização do monumento no Rio de Janeiro.<br>
+                <form>
+                    <input type="text" id="p11" name="pergunta11"
+                    placeholder="Digite sua resposta..."><br>
+                </form>    
+             </section>
+			<!-- Tabela de pontuação e Resultado -->
+            <section>
+                <h2>Resultado do Quiz</h2>
+                <!-- Botão para validar as respostas -->
+                <button type="button" id="btn-calcular">Verificar Minha Pontuação</button>
+                
+                <!-- Onde a nota e mensagem vão aparecer -->
+                <div id="resultado-quiz" class="resultado-box"></div>
+
+                <h2>Tabela de pontuação</h2>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Pontuação</th>
+                            <th>Resultado</th>
+                        </tr>
+                    </thead>  
+                    <tbody>
+                        <tr>
+                            <td>0-2</td>
+                            <td>Não desista! Continue estudando e tente novamente.</td>
+                        </tr>
+                        <tr>
+                            <td>3-5</td>
+                            <td>Bom trabalho! Você tem um bom conhecimento sobre o Brasil.</td>
+                        </tr>
+                        <tr>
+                            <td>6-8</td>
+                            <td>Excelente! Você é um verdadeiro especialista em assuntos sobre o Brasil.</td>
+                        </tr>
+                        <tr>
+                            <td>9-11</td>
+                            <td>Parabéns! Você é um mestre do conhecimento sobre o Brasil!</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2">Boa sorte na próxima!</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </section>
+            <!--Lista de Respostas-->
+            <section>
+                <h2>Lista de respostas</h2>
+                    <details>
+                        <summary>Clique aqui para ver as respostas</summary>
+                        <ol>
+                            <li>Amazonas</li>
+                            <li>Brasília</li>
+                            <li>Rio Amazonas</li>
+                            <li>São Paulo</li>
+                            <li>Amazônia</li>
+                            <li>Lula</li>
+                            <li>07/09/1822</li>
+                            <li>Pacífico</li>
+                            <li>Acre, Amazonas, Roraima</li>
+                            <li>Real</li>
+                            <li>Cristo Redentor</li>
+                        </ol>
+                    </details>
+            </section>     
+            <!--Formulario de Feedback-->
+            <section>
+                <h2>Formulário de Feedback</h2>
+                <form>
+                    <fieldset>
+                        <legend>Deixe seu feedback sobre o quiz</legend>
+                        <label for="nome">Nome:</label><br>
+                        <input type="text" id="nome" name="nome" placeholder="Digite seu nome"><br>
+                        <label for="email">Email:</label><br>
+                        <input type="email" id="email" name="email" placeholder="Digite seu email"><br>
+                        <label for="mensagem">Mensagem:</label><br>
+                        <textarea id="mensagem" name="mensagem" rows="4" cols="50" placeholder="Digite sua mensagem"></textarea><br>
+                        <button onclick="alert('Obrigado pelo seu feedback!')">Enviar</button>
+                    </fieldset>
+                </form>
+            </section>
+        </main>
+        <footer>
+            <p class="paragrafo-footer">&copy; 2026 Quiz sobre o Brasil. Todos os direitos reservados.</p>
+            <p class="paragrafo-footer">Para conhecer sobre o criador do quiz, <a href="sobre.html">clique aqui</a>.</p>
+        </footer>
+		
+        <script src="script.js"></script>
+	</body>
+
+</html>
