@@ -1,0 +1,116 @@
+document.addEventListener("DOMContentLoaded", function () {
+    // Gabarito do Quiz
+    const gabarito = {
+        pergunta1: "Amazonas",
+        pergunta2: "Brasília",
+        pergunta3: "Rio Amazonas",
+        pergunta4: "São Paulo",
+        pergunta5: "Amazônia",
+        pergunta6: "lula",
+        pergunta7: "1822-09-07",
+        pergunta8: "Pacífico",
+        pergunta10: "Real",
+        pergunta11: ["cristo redentor", "cristo"]
+    };
+
+    // Função para criar ou obter o elemento de mensagem dentro de cada section
+    function obterOuCriarFeedback(section) {
+        let feedback = section.querySelector(".feedback-instantaneo");
+        if (!feedback) {
+            feedback = document.createElement("div");
+            feedback.className = "feedback-instantaneo";
+            section.appendChild(feedback);
+        }
+        return feedback;
+    }
+
+    function exibirFeedback(section, estaCorreto, mensagemPersonalizada = "") {
+        const feedback = obterOuCriarFeedback(section);
+        if (estaCorreto) {
+            feedback.textContent = "✓ Você acertou!";
+            feedback.className = "feedback-instantaneo correto";
+        } else {
+            feedback.textContent = mensagemPersonalizada || "✕ Você errou! Tente novamente.";
+            feedback.className = "feedback-instantaneo incorreto";
+        }
+    }
+
+    // 1. Alternativas de múltipla escolha (Radio)
+    for (let i = 1; i <= 5; i++) {
+        const radios = document.querySelectorAll(`input[name="pergunta${i}"]`);
+        radios.forEach(radio => {
+            radio.addEventListener("change", function () {
+                const section = this.closest("section");
+                const acertou = this.value === gabarito[`pergunta${i}`];
+                exibirFeedback(section, acertou);
+            });
+        });
+    }
+
+    // 2. Campo de texto (Presidente - P6)
+    const p6 = document.getElementById("p6");
+    if (p6) {
+        p6.addEventListener("change", function () {
+            const section = this.closest("section");
+            const resposta = this.value.trim().toLowerCase();
+            const acertou = resposta.includes(gabarito.pergunta6);
+            if (resposta !== "") exibirFeedback(section, acertou);
+        });
+    }
+
+    // 3. Campo de data (Independência - P7)
+    const p7 = document.getElementById("p7");
+    if (p7) {
+        p7.addEventListener("change", function () {
+            const section = this.closest("section");
+            const acertou = this.value === gabarito.pergunta7;
+            if (this.value !== "") exibirFeedback(section, acertou);
+        });
+    }
+
+    // 4. Menu suspenso (Oceano - P8)
+    const p8 = document.getElementById("p8");
+    if (p8) {
+        p8.addEventListener("change", function () {
+            const section = this.closest("section");
+            const acertou = this.value === gabarito.pergunta8;
+            exibirFeedback(section, acertou);
+        });
+    }
+
+    // 5. Checkboxes (Região Norte - P9)
+    const checkboxesP9 = document.querySelectorAll(`input[name="pergunta9"]`);
+    checkboxesP9.forEach(cb => {
+        cb.addEventListener("change", function () {
+            const section = this.closest("section");
+            const acre = document.getElementById("p1f").checked;
+            const amazonas = document.getElementById("p2f").checked;
+            const bahia = document.getElementById("p3f").checked;
+            const roraima = document.getElementById("p4f").checked;
+
+            const acertou = acre && amazonas && roraima && !bahia;
+            exibirFeedback(section, acertou, acertou ? "" : "✕ Seleção incorreta. Lembre-se: Bahia não fica no Norte!");
+        });
+    });
+
+    // 6. Menu suspenso (Moeda - P10)
+    const p10 = document.getElementById("p10");
+    if (p10) {
+        p10.addEventListener("change", function () {
+            const section = this.closest("section");
+            const acertou = this.value === gabarito.pergunta10;
+            exibirFeedback(section, acertou);
+        });
+    }
+
+    // 7. Campo de texto (Monumento - P11)
+    const p11 = document.getElementById("p11");
+    if (p11) {
+        p11.addEventListener("change", function () {
+            const section = this.closest("section");
+            const resposta = this.value.trim().toLowerCase();
+            const acertou = gabarito.pergunta11.some(termo => resposta.includes(termo));
+            if (resposta !== "") exibirFeedback(section, acertou);
+        });
+    }
+});
