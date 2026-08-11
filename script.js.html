@@ -1,0 +1,169 @@
+document.addEventListener("DOMContentLoaded", function () {
+    // Gabarito oficial
+    const gabarito = {
+        pergunta1: "Amazonas",
+        pergunta2: "Brasília",
+        pergunta3: "Rio Amazonas",
+        pergunta4: "São Paulo",
+        pergunta5: "Amazônia",
+        pergunta6: "lula",
+        pergunta7: "1822-09-07",
+        pergunta8: "Pacífico",
+        pergunta10: "Real",
+        pergunta11: ["cristo redentor", "cristo"]
+    };
+
+    // Função para criar/obter a caixa de mensagem dentro da section
+    function obterOuCriarFeedback(section) {
+        let feedback = section.querySelector(".feedback-instantaneo");
+        if (!feedback) {
+            feedback = document.createElement("div");
+            feedback.className = "feedback-instantaneo";
+            section.appendChild(feedback);
+        }
+        return feedback;
+    }
+
+    function exibirFeedback(section, estaCorreto, mensagemIncorreta = "✕ Você errou! Tente novamente.") {
+        const feedback = obterOuCriarFeedback(section);
+        if (estaCorreto) {
+            feedback.textContent = "✓ Você acertou!";
+            feedback.className = "feedback-instantaneo correto";
+        } else {
+            feedback.textContent = mensagemIncorreta;
+            feedback.className = "feedback-instantaneo incorreto";
+        }
+    }
+
+    // 1. Radio Buttons (Perguntas 1 a 5)
+    for (let i = 1; i <= 5; i++) {
+        const radios = document.querySelectorAll(`input[name="pergunta${i}"]`);
+        radios.forEach(radio => {
+            radio.addEventListener("change", function () {
+                const section = this.closest("section");
+                const acertou = this.value === gabarito[`pergunta${i}`];
+                exibirFeedback(section, acertou);
+            });
+        });
+    }
+
+    // 2. Pergunta 6 (Presidente - Texto)
+    const p6 = document.getElementById("p6");
+    if (p6) {
+        p6.addEventListener("input", function () {
+            const section = this.closest("section");
+            const resposta = this.value.trim().toLowerCase();
+            if (resposta === "") {
+                const fb = section.querySelector(".feedback-instantaneo");
+                if (fb) fb.remove();
+                return;
+            }
+            const acertou = resposta.includes(gabarito.pergunta6);
+            exibirFeedback(section, acertou);
+        });
+    }
+
+    // 3. Pergunta 7 (Data de Independência)
+    const p7 = document.getElementById("p7");
+    if (p7) {
+        p7.addEventListener("change", function () {
+            const section = this.closest("section");
+            if (!this.value) return;
+            const acertou = this.value === gabarito.pergunta7;
+            exibirFeedback(section, acertou);
+        });
+    }
+
+    // 4. Pergunta 8 (Oceano - Select)
+    const p8 = document.getElementById("p8");
+    if (p8) {
+        p8.addEventListener("change", function () {
+            const section = this.closest("section");
+            const acertou = this.value === gabarito.pergunta8;
+            exibirFeedback(section, acertou);
+        });
+    }
+
+    // 5. Pergunta 9 (Região Norte - Checkboxes)
+    const checkboxesP9 = document.querySelectorAll(`input[name="pergunta9"]`);
+    checkboxesP9.forEach(cb => {
+        cb.addEventListener("change", function () {
+            const section = this.closest("section");
+            const acre = document.getElementById("p1f").checked;
+            const amazonas = document.getElementById("p2f").checked;
+            const bahia = document.getElementById("p3f").checked;
+            const roraima = document.getElementById("p4f").checked;
+
+            if (!acre && !amazonas && !bahia && !roraima) {
+                const fb = section.querySelector(".feedback-instantaneo");
+                if (fb) fb.remove();
+                return;
+            }
+
+            const acertou = acre && amazonas && roraima && !bahia;
+            exibirFeedback(section, acertou, "✕ Seleção incorreta! Marque apenas os estados do Norte.");
+        });
+    });
+
+    // 6. Pergunta 10 (Moeda - Select)
+    const p10 = document.getElementById("p10");
+    if (p10) {
+        p10.addEventListener("change", function () {
+            const section = this.closest("section");
+            const acertou = this.value === gabarito.pergunta10;
+            exibirFeedback(section, acertou);
+        });
+    }
+
+    // 7. Pergunta 11 (Monumento - Texto)
+    const p11 = document.getElementById("p11");
+    if (p11) {
+        p11.addEventListener("input", function () {
+            const section = this.closest("section");
+            const resposta = this.value.trim().toLowerCase();
+            if (resposta === "") {
+                const fb = section.querySelector(".feedback-instantaneo");
+                if (fb) fb.remove();
+                return;
+            }
+            const acertou = gabarito.pergunta11.some(termo => resposta.includes(termo));
+            exibirFeedback(section, acertou);
+        });
+    }
+
+    // Botão de Calcular Pontuação Geral
+    const btnCalcular = document.getElementById("btn-calcular");
+    if (btnCalcular) {
+        btnCalcular.addEventListener("click", function () {
+            let pontos = 0;
+
+            // p1 a p5
+            for (let i = 1; i <= 5; i++) {
+                const sel = document.querySelector(`input[name="pergunta${i}"]:checked`);
+                if (sel && sel.value === gabarito[`pergunta${i}`]) pontos++;
+            }
+            // p6
+            if (p6 && p6.value.trim().toLowerCase().includes(gabarito.pergunta6)) pontos++;
+            // p7
+            if (p7 && p7.value === gabarito.pergunta7) pontos++;
+            // p8
+            if (p8 && p8.value === gabarito.pergunta8) pontos++;
+            // p9
+            const acre = document.getElementById("p1f")?.checked;
+            const amazonas = document.getElementById("p2f")?.checked;
+            const bahia = document.getElementById("p3f")?.checked;
+            const roraima = document.getElementById("p4f")?.checked;
+            if (acre && amazonas && roraima && !bahia) pontos++;
+            // p10
+            if (p10 && p10.value === gabarito.pergunta10) pontos++;
+            // p11
+            if (p11 && gabarito.pergunta11.some(t => p11.value.trim().toLowerCase().includes(t))) pontos++;
+
+            const resDiv = document.getElementById("resultado-quiz");
+            if (resDiv) {
+                resDiv.style.display = "block";
+                resDiv.innerHTML = `<h3>Você acertou ${pontos} de 11 perguntas!</h3>`;
+            }
+        });
+    }
+});
